@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomersModule } from './customers/customers.module';
-import { User } from './typeorm/User';
+import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { PaymentsModule } from './payments/payments.module';
 @Module({
   imports: [
     CustomersModule,
@@ -16,13 +17,14 @@ import { PassportModule } from '@nestjs/passport';
       username: 'root',
       password: 'alihassan',
       database: 'tutorial_db',
-      entities: [User],
+      entities,
       synchronize: true,
     }),
     AuthModule,
     PassportModule.register({
       session: true,
     }),
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],
