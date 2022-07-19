@@ -4,7 +4,7 @@ import { CustomersModule } from './customers/customers.module';
 import { User } from './typeorm/User';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-
+import { PassportModule } from '@nestjs/passport';
 @Module({
   imports: [
     CustomersModule,
@@ -20,6 +20,9 @@ import { AuthModule } from './auth/auth.module';
       synchronize: true,
     }),
     AuthModule,
+    PassportModule.register({
+      session: true,
+    }),
   ],
   controllers: [],
   providers: [],
